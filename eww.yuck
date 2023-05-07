@@ -1,0 +1,129 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (music)
+    (sidestuff)))
+
+(defwidget sidestuff [] (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    "🔊 ${volume}%  "
+    (metric :label ""
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (metric :label "💾"
+            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :onchange "")
+    time))
+
+
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+(defwidget workspaces []
+    (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+        (box :space-evenly false
+            (label :text "${workspaces}${current_workspace}" :visible false)
+                (for workspace in workspaces
+                    (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+                        (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                            (label :text "${workspace.id}")
+                        )
+                    )
+                )
+        )
+    )
+)
+
+
+(defwidget music []
+  (box  :class "music"
+        :orientation "h"
+        :space-evenly false
+        :onchange "mpc status"
+        :halign "center"
+        (box    :class "music_player_bar"
+                :halign "center"
+                :hexpand false :vexpand false
+                (progress
+                    :value prog_bar
+                    :orientation 'h'
+                    :width '100'
+                    :min 0
+                    :max 100
+                    :onchange "mpc seek %}"
+                )
+        )
+
+        (box    :class "music_player_buttons"
+                :orientation "h"
+                :halign "center"
+                :valign "bottom"
+                :spacing 10
+                :hexpand false :vexpand false
+                (button :onclick "mpc prev" "玲")
+                (button :onclick "mpc toggle" "契" )
+				(button :onclick "mpc next"   "怜" )
+
+        )
+        
+    {music != "" ? "🎵${music}" : ""}
+
+))
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+
+
+(defpoll music 
+    :initial ""
+    :interval "500ms"
+    "mpc status | head -n 1 | cut -b  1-50 | awk '{printf \"%s %*s\", $0,50 - length($a),\"\"}' "
+)
+
+(defpoll prog_bar 
+    :initial '0'
+    :interval "500ms"
+    "mpc status | grep '#' | awk '{print $4}' | sed 's/(//;s/%.//'"
+)
+
+(defpoll volume 
+    :initial '0'
+    :interval "20ms"
+    "pamixer --get-volume"
+)
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwindow bar0
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "20px"
+                      :anchor "top center")
+    :stacking "fg"
+    :exclusive true
+    :focusable false
+  (bar))
+
+(defwindow bar1
+  :monitor 1
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "20px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar))

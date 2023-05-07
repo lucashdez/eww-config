@@ -1,0 +1,115 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+//Global Styles
+.bar1 {
+  background-color: #2a2a2a;
+  color: #b0b4bc;
+  padding: 10px;
+}
+
+.bar0 {
+  background-color: #2a2a2a;
+  color: #b0b4bc;
+  padding: 10px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.music_player_bar {
+	all: unset;
+	background-color: rgba(0,0,0,0);
+	margin: 0px 5px 5px 0px;
+}
+
+.music_player_bar progressbar trough{
+	all: unset;
+	background-color: #d2d4de;
+	min-width: 200px;
+	min-height: 10px;
+	border-radius: 9px;
+}
+
+.music_player_bar progressbar trough progress {
+	all: unset;
+	border-radius: 9px;
+	min-width: 5px;
+	min-height: 10px;
+	background-color: #CF6679;
+	opacity: 1;
+}
+
+.music_player_buttons button {
+	all: unset;
+	font-size: 10px;
+	color: #ffffff;
+	min-width: 20px;
+	min-height: 5px;	
+}
+
+.music_player_buttons button:hover {
+	background-color: #1c1c1c;
+}
+
+
+.sidestuff slider {
+  all: unset;
+  color: #ffd5cd;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 100px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.label-ram {
+  font-size: large;
+}
+
+.workspaces-widget {
+    padding: 5px;
+}
+
+.workspace-entry {
+    padding: 0px 10px 0px 10px;
+}
+
+.workspace-entry.occupied {
+    color: #00ff00
+}
+
+.workspace-entry.current {
+    color: #D35D6E;
+    background-color: #555555;
+}
+
+
+.workspace-entry.empty {
+    color: #ffffff
+}
