@@ -29,16 +29,20 @@
                     )
                 )
         )
+
     )
+
+    
 )
 
-
 (defwidget music []
-  (box  :class "music"
+    (box  :class "music"
         :orientation "h"
         :space-evenly false
         :onchange "mpc status"
         :halign "center"
+
+        
         (box    :class "music_player_bar"
                 :halign "center"
                 :hexpand false :vexpand false
@@ -51,18 +55,19 @@
                     :onchange "mpc seek %}"
                 )
         )
-
-        (box    :class "music_player_buttons"
-                :orientation "h"
-                :halign "center"
-                :valign "bottom"
-                :spacing 10
-                :hexpand false :vexpand false
-                (button :onclick "mpc prev" "玲")
-                (button :onclick "mpc toggle" "契" )
-				(button :onclick "mpc next"   "怜" )
-
+        (box    
+            :class "music_player_buttons"
+            :orientation "h"
+            :halign "left"
+            :valign "bottom"
+            :spacing 10
+            :hexpand false :vexpand false
+            (button :onclick "mpc prev" "玲")
+            (button :onclick "mpc toggle" "契" )
+			(button :onclick "mpc next"   "怜" )
         )
+
+        
         
     {music != "" ? "🎵${music}" : ""}
 
