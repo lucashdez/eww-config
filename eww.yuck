@@ -6,12 +6,7 @@
 
 (defwidget sidestuff [] (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
     "🔊 ${volume}%  "
-    (metric :label ""
-            :value {EWW_RAM.used_mem_perc}
-            :onchange "")
-    (metric :label "💾"
-            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
-            :onchange "")
+    "${battery_status == "Charging" ? "🔌": "🔋" }${battery}%     "
     time))
 
 
@@ -102,6 +97,16 @@
     :initial '0'
     :interval "20ms"
     "pamixer --get-volume"
+)
+
+(defpoll battery
+    :interval "1s"
+    "cat /sys/class/power_supply/BAT0/capacity "
+)
+
+(defpoll battery_status
+    :interval "1s"
+    "cat /sys/class/power_supply/BAT0/status"
 )
 
 (defpoll time :interval "10s"
