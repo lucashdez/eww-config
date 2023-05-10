@@ -40,6 +40,18 @@
 	opacity: 1;
 }
 
+
+.music_player_volume button {
+    all:unset;
+    color: #ffffff;
+    font-size: 16px;
+    min-width: 20px;
+    min-height: 5px;
+}
+.music_player_volume button:hover {
+    background-color: #1c1c1c
+}
+
 .music_player_buttons button {
 	all: unset;
 	font-size: 12px;

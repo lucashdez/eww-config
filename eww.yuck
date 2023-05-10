@@ -38,6 +38,17 @@
         :halign "center"
 
         
+        (box 
+            :class "music_player_volume"
+            :orientation "h"
+            :halign "left"
+            :valign "bottom"
+            :hexpand false :vexpand false
+            (button :onclick "mpc volume -5" "-")
+            (button :onclick "mpc volume +5" "+")
+            "${mpc_volume}    "
+        )
+
         (box    :class "music_player_bar"
                 :halign "center"
                 :hexpand false :vexpand false
@@ -103,6 +114,13 @@
     :initial '0'
     :interval "20ms"
     "pamixer --get-volume"
+)
+
+(defpoll mpc_volume
+    :initial '0'
+    :interval "20ms"
+    "mpc volume | cut -d ':' -f2"
+
 )
 
 (defpoll battery
