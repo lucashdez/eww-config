@@ -57,9 +57,9 @@
             :valign "bottom"
             :spacing 10
             :hexpand false :vexpand false
-            (button :onclick "mpc prev" "玲")
-            (button :onclick "mpc toggle" "契" )
-			(button :onclick "mpc next"   "怜" )
+            (button :onclick "mpc prev" "⏮")
+            (button :onclick "mpc toggle"  "${music_status  == "playing" ? "⏸" : "▶"}" )
+			(button :onclick "mpc next"   "⏭" )
         )
 
         
@@ -85,6 +85,12 @@
     :initial ""
     :interval "500ms"
     "mpc status | head -n 1 | cut -b  1-50 | awk '{printf \"%s %*s\", $0,50 - length($a),\"\"}' "
+)
+
+(defpoll music_status
+    :initial ""
+    :interval "500ms"
+    "mpc | awk '{print $1}' | head -n 2 | tail -n 1 | cut -d \"[\" -f2 | cut -d \"]\" -f1"
 )
 
 (defpoll prog_bar 
