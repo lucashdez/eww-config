@@ -30,6 +30,7 @@
 ; ██║  ██║██║╚██████╔╝██║  ██║   ██║
 ; ╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝
 
+; TIME
 (defpoll time_poll :interval "1s" `date +%H:%M:%S`)
 (defwidget time []
     (box :orientation "h"
@@ -37,12 +38,46 @@
         :halign "end"
         time_poll))
 
+;BATTERY
+(defpoll battery :interval "15s" "./scripts/battery.sh --bat")
+(defpoll battery_status :interval "1m" "./scripts/battery.sh --bat-st")
+(defwidget bat []
+    (box :class "bat_module"
+        :vexpand "false"
+        :hexpand "false"
+        (circular-progress
+            :value battery
+            :class "batbar"
+            :thickness 2
+        (button
+            :class "iconbat"
+            :limit-width 2
+            :tooltip "battery on ${battery}: ${battery_status}"
+            "%"))))
+; MEMORY
+(defpoll memory :interval "15s" "./scripts/memory.sh")
+(defwidget mem []
+    (box
+        :class "mem_module"
+        :vexpand "false"
+        :hexpand "false"
+        (circular-progress
+            :value memory
+            :class "membar"
+            :thickness 2
+        (button
+            :class "iconmem"
+            :limit-width 1
+            :tooltip "Used x of y"
+            "%"))))
 
 (defwidget right[]
-(box :class "right"
-    :orientation "h"
-    :halign "end"
-    (time)))
+    (box :class "right"
+        :orientation "h"
+        :halign "end"
+        (mem)
+        (bat)
+        (time)))
 
 
 

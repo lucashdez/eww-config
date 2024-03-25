@@ -1,20 +1,39 @@
 /** ALL **/
 * {
   all: unset;
+  margin: 0px;
+  padding: 0px;
   font-family: FiraCode Nerd Font;
   font-family: MesloLG Nerd Font;
 }
 
-/** General **/
-.bar_class {
-  background-color: #0f0f17;
-  border-radius: 16px;
-}
-
 .right {
-  margin: 10px;
+  border-radius: 16px;
+  background-color: #0f0f17;
 }
 
 .time {
   font-size: 20px;
+  padding: 0px 10px 0px 0px;
+}
+
+.batbar {
+  color: #afbea2;
+  background-color: #38384d;
+}
+
+.bat_module {
+  background-color: #0f0f17;
+  border-radius: 16px;
+  margin: 0px 0px 0px 0px;
+}
+
+.mem_module { 
+  margin: 0px 0px 0px 0px;
+
+}
+
+.membar {
+  color: #e0b089;
+  background-color: #38384d;
 }
