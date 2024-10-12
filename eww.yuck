@@ -5,10 +5,16 @@
 ; ███████╗███████╗██║        ██║
 ; ╚══════╝╚══════╝╚═╝        ╚═╝
 
+(defvar kb_es false)
 (defwidget left[]
 (box :class "left"
     :orientation "h"
-    :halign "start"))
+    :halign "start"
+    (button
+        :class "kb-button"
+        :tooltip "Something"
+        :onclick "./scripts/kbchange.sh ${kb_es}"
+        {kb_es ? "es" : "en"})))
 
 ;  ██████╗███████╗███╗   ██╗████████╗███████╗██████╗
 ; ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
@@ -101,7 +107,7 @@
         :y "1px"
         :width "98%"
         :height "30px"
-        :anchor "top center")
+        :anchor "bottom center")
     :stacking "fg"
     :exclusive true
     (bar_1))
@@ -112,7 +118,7 @@
         :y "1px"
         :width "98%"
         :height "30px"
-        :anchor "top center")
+        :anchor "bottom center")
     :stacking "fg"
     :exclusive true
     (bar_1))
