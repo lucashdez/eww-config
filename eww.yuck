@@ -59,7 +59,7 @@
             :class "iconbat"
             :limit-width 2
             :tooltip "battery on ${battery}: ${battery_status}"
-            "%"))))
+            "${battery}"))))
 ; MEMORY
 (defpoll memory :interval "15s" "./scripts/memory.sh")
 (defwidget mem []
@@ -75,7 +75,7 @@
             :class "iconmem"
             :limit-width 1
             :tooltip "Used x of y"
-            "%"))))
+            "${memory}"))))
 
 (defwidget right[]
     (box :class "right"
