@@ -23,10 +23,17 @@
 ; ╚██████╗███████╗██║ ╚████║   ██║   ███████╗██║  ██║
 ;  ╚═════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
 
+(defpoll song :interval "1s" "~/.config/eww/scripts/music.sh --song")
+(defwidget music []
+		   (box :orientation "h"
+				:halign "center"
+				song))
+
 (defwidget center[]
 (box :class "center"
     :orientation "h"
-    :halign "center"))
+    :halign "center"
+	(music)))
 
 
 ; ██████╗ ██╗ ██████╗ ██╗  ██╗████████╗
