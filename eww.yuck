@@ -7,14 +7,7 @@
 
 (defvar kb_es false)
 (defwidget left[]
-(box :class "left"
-    :orientation "h"
-    :halign "start"
-    (button
-        :class "kb-button"
-        :tooltip "Something"
-        :onclick "./scripts/kbchange.sh ${kb_es}"
-        {kb_es ? "es" : "en"})))
+    (box))
 
 ;  ██████╗███████╗███╗   ██╗████████╗███████╗██████╗
 ; ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
@@ -113,7 +106,7 @@
     :geometry (geometry :x "0%"
         :y "1px"
         :width "98%"
-        :height "20px"
+        :height "10px"
         :anchor "bottom center")
     :stacking "fg"
     :exclusive true
@@ -124,7 +117,7 @@
     :geometry (geometry :x "0%"
         :y "1px"
         :width "98%"
-        :height "30px"
+        :height "10px"
         :anchor "bottom center")
     :stacking "fg"
     :exclusive true
