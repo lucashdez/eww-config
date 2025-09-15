@@ -5,6 +5,12 @@
   padding: 0px;
   font-family: FiraCode Nerd Font;
   font-family: MesloLG Nerd Font;
+  font-size: 16px;
+}
+
+.bar_class {
+	background-color: #0f0f17;
+
 }
 
 .left {
@@ -13,7 +19,6 @@
 
 .kb-button {
   color: #ffffff;
-  font-size: 10px
 }
 
 
@@ -23,7 +28,6 @@
 }
 
 .time {
-  font-size: 10px;
   padding: 0px 10px 0px 0px;
 }
 
@@ -46,4 +50,43 @@
 .membar {
   color: #e0b089;
   background-color: #38384d;
+}
+
+.workspaces {
+	background-color: #0f0f17;
+	border-radius: 10px;
+	padding: 0px 10px 0px 10px;
+}
+
+
+.workspaces button {
+	border-bottom: 1px solid transparent;
+	transition: all 0.2s;
+	&:hover {
+		border-bottom: 1px solid white;
+	}
+
+}
+
+.w_active {
+	color: #00FF00;
+	padding: 0;
+	margin: 0;
+	background-color: #38384d;
+}
+
+.w_inactive {
+	margin: 0;
+	padding: 0;
+}
+
+.w_unset {
+	color: rgba(255, 255, 255, 0.2)
+}
+
+
+.music {
+	background-color: #0f0f17;
+	padding: 0px 10px 0px 10px;
+	border-radius: 10px;
 }
